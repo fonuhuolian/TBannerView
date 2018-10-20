@@ -16,7 +16,7 @@ allprojects {
 ```
 `module build.gradle `
 ```
-implementation 'com.github.fonuhuolian:XBannerView:1.0.0'
+implementation 'com.github.fonuhuolian:TBannerView:1.0.0'
 ```
 
 > xml
