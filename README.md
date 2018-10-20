@@ -39,7 +39,7 @@ implementation 'com.github.fonuhuolian:TBannerView:1.0.0'
     imageView 自定义图片
     支持以下属性：
         selectedIndicatorSrc、unSelectedIndicatorSrc-->
-<org.fonuhuolian.xbannerview.XBannerView
+<org.fonuhuolian.tbannerview.TBannerView
     android:id="@+id/banner"
     android:layout_width="match_parent"
     android:layout_height="168dp"
