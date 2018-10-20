@@ -57,14 +57,14 @@ implementation 'com.github.fonuhuolian:TBannerView:1.0.0'
 ```
 List<String> urls = new ArrayList<>();
 
-XBannerView bannerLayout = findViewById(R.id.banner);
+TBannerView banner = findViewById(R.id.banner);
 // 设置图片加载器
-bannerLayout.setXBannerImageLoader(new TBannerImageLoader() {
+banner.setTBannerImageLoader(new TBannerImageLoader() {
     @Override
     public void displayImage(Context context, String path, ImageView imageView) {
         Picasso.get().load(path).into(imageView);
     }
 });
-bannerLayout.setViewUrls(urls);
+banner.setViewUrls(urls);
 ```
 
