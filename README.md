@@ -19,6 +19,12 @@ allprojects {
 implementation 'com.github.fonuhuolian:TBannerView:1.0.0'
 ```
 
+> 混淆
+```
+-dontwarn org.fonuhuolian.tbannerview.**
+-keep class org.fonuhuolian.tbannerview.**{*;}
+```
+
 > xml
 
 ```
