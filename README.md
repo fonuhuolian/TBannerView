@@ -51,8 +51,8 @@ implementation 'com.github.fonuhuolian:TBannerView:1.0.0'
     android:layout_marginTop="10dp"
     app:autoPlayDuration="4000"
     app:indicatorMargin="5dp"
-    app:indicatorPosition="centerBottom"
-    app:indicatorShape="imageView"
+    app:indicator_position="centerBottom"
+    app:indicator_shape="imageView"
     app:indicatorSpace="2dp"
     app:scrollDuration="600" />
 ```
