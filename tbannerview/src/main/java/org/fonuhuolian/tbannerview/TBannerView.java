@@ -135,7 +135,7 @@ public class TBannerView extends RelativeLayout {
         selectedIndicatorColor = array.getColor(R.styleable.TBannerView_selectedIndicatorColor, selectedIndicatorColor);
         unSelectedIndicatorColor = array.getColor(R.styleable.TBannerView_unSelectedIndicatorColor, unSelectedIndicatorColor);
 
-        int shape = array.getInt(R.styleable.TBannerView_indicatorShape, Shape.oval.ordinal());
+        int shape = array.getInt(R.styleable.TBannerView_indicator_shape, Shape.oval.ordinal());
         for (Shape shape1 : Shape.values()) {
             if (shape1.ordinal() == shape) {
                 indicatorShape = shape1;
@@ -147,7 +147,7 @@ public class TBannerView extends RelativeLayout {
         unSelectedIndicatorHeight = (int) array.getDimension(R.styleable.TBannerView_unSelectedIndicatorHeight, unSelectedIndicatorHeight);
         unSelectedIndicatorWidth = (int) array.getDimension(R.styleable.TBannerView_unSelectedIndicatorWidth, unSelectedIndicatorWidth);
 
-        int position = array.getInt(R.styleable.TBannerView_indicatorPosition, Position.centerBottom.ordinal());
+        int position = array.getInt(R.styleable.TBannerView_indicator_position, Position.centerBottom.ordinal());
         for (Position position1 : Position.values()) {
             if (position == position1.ordinal()) {
                 indicatorPosition = position1;

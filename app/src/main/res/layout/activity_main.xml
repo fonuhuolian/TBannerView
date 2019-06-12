@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,12 +8,11 @@
 
     <!--autoPlayDuration 触发自动滚动的时间-->
     <!--indicatorMargin 指示器的margin-->
-    <!--indicatorPosition 指示器的位置-->
-    <!--indicatorPosition 指示器的位置-->
+    <!--indicator_position 指示器的位置-->
     <!--indicatorSpace 指示器之间的距离-->
     <!--scrollDuration 图片自动滚动持续的时间-->
     <!--isAutoPlay 默认自动轮播-->
-    <!--indicatorShape 指示器的样式
+    <!--indicator_shape 指示器的样式
         rect 正方形
         oval 圆形
         支持以下属性：
@@ -30,10 +29,10 @@
         android:layout_marginTop="10dp"
         app:autoPlayDuration="4000"
         app:indicatorMargin="5dp"
-        app:indicatorPosition="centerBottom"
-        app:indicatorShape="imageView"
         app:indicatorSpace="2dp"
+        app:indicator_position="centerBottom"
+        app:indicator_shape="imageView"
         app:scrollDuration="600" />
 
 
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

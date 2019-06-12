@@ -3,7 +3,7 @@
     <declare-styleable name="TBannerView">
         <attr name="selectedIndicatorColor" format="color|reference" />
         <attr name="unSelectedIndicatorColor" format="color|reference" />
-        <attr name="indicatorShape" format="enum">
+        <attr name="indicator_shape" format="enum">
             <enum name="rect" value="0" />
             <enum name="oval" value="1" />
             <enum name="imageView" value="2" />
@@ -15,7 +15,7 @@
         <attr name="unSelectedIndicatorHeight" format="dimension|reference" />
         <attr name="unSelectedIndicatorWidth" format="dimension|reference" />
 
-        <attr name="indicatorPosition" format="enum">
+        <attr name="indicator_position" format="enum">
             <enum name="centerBottom" value="0" />
             <enum name="rightBottom" value="1" />
             <enum name="leftBottom" value="2" />

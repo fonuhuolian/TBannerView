@@ -30,12 +30,11 @@ implementation 'com.github.fonuhuolian:TBannerView:1.0.0'
 ```
 <!--autoPlayDuration 触发自动滚动的时间-->
 <!--indicatorMargin 指示器的margin-->
-<!--indicatorPosition 指示器的位置-->
-<!--indicatorPosition 指示器的位置-->
+<!--indicator_position 指示器的位置-->
 <!--indicatorSpace 指示器之间的距离-->
 <!--scrollDuration 图片自动滚动持续的时间-->
 <!--isAutoPlay 默认自动轮播-->
-<!--indicatorShape 指示器的样式
+<!--indicator_shape 指示器的样式
     rect 正方形
     oval 圆形
     支持以下属性：
