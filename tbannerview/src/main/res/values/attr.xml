@@ -33,6 +33,12 @@
         <attr name="selectedIndicatorSrc" format="reference" />
         <attr name="unSelectedIndicatorSrc" format="reference" />
 
+        <attr name="imageViewPaddingLeft" format="dimension|reference" />
+        <attr name="imageViewPaddingRight" format="dimension|reference" />
+        <attr name="imageViewPaddingTop" format="dimension|reference" />
+        <attr name="imageViewPaddingBottom" format="dimension|reference" />
+        <attr name="imageViewPadding" format="dimension|reference" />
+
     </declare-styleable>
 
 </resources>

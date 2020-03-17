@@ -61,6 +61,12 @@ public class TBannerView extends RelativeLayout {
     private int unSelectedIndicatorHeight = 6;
     private int unSelectedIndicatorWidth = 6;
 
+    private int imageViewPaddingLeft = 0;
+    private int imageViewPaddingRight = 0;
+    private int imageViewPaddingTop = 0;
+    private int imageViewPaddingBottom = 0;
+    private int imageViewPadding = 0;
+
     private Position indicatorPosition = Position.centerBottom;
     private int autoPlayDuration = 4000;
     private int scrollDuration = 900;
@@ -146,6 +152,12 @@ public class TBannerView extends RelativeLayout {
         selectedIndicatorWidth = (int) array.getDimension(R.styleable.TBannerView_selectedIndicatorWidth, selectedIndicatorWidth);
         unSelectedIndicatorHeight = (int) array.getDimension(R.styleable.TBannerView_unSelectedIndicatorHeight, unSelectedIndicatorHeight);
         unSelectedIndicatorWidth = (int) array.getDimension(R.styleable.TBannerView_unSelectedIndicatorWidth, unSelectedIndicatorWidth);
+
+        imageViewPadding = (int) array.getDimension(R.styleable.TBannerView_imageViewPadding, imageViewPadding);
+        imageViewPaddingTop = (int) array.getDimension(R.styleable.TBannerView_imageViewPaddingTop, imageViewPaddingTop);
+        imageViewPaddingBottom = (int) array.getDimension(R.styleable.TBannerView_imageViewPaddingBottom, imageViewPaddingBottom);
+        imageViewPaddingLeft = (int) array.getDimension(R.styleable.TBannerView_imageViewPaddingLeft, imageViewPaddingLeft);
+        imageViewPaddingRight = (int) array.getDimension(R.styleable.TBannerView_imageViewPaddingRight, imageViewPaddingRight);
 
         int position = array.getInt(R.styleable.TBannerView_indicator_position, Position.centerBottom.ordinal());
         for (Position position1 : Position.values()) {
@@ -238,6 +250,12 @@ public class TBannerView extends RelativeLayout {
     @NonNull
     private ImageView getImageView(String url, final int position) {
         ImageView imageView = new ImageView(getContext());
+        if (imageViewPadding != 0) {
+            imageView.setPadding(imageViewPadding, imageViewPadding, imageViewPadding, imageViewPadding);
+        } else {
+            imageView.setPadding(imageViewPaddingLeft, imageViewPaddingTop, imageViewPaddingRight, imageViewPaddingBottom);
+        }
+
         imageView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GitHub-TBannerView.iml" filepath="$PROJECT_DIR$/GitHub-TBannerView.iml" group="TBannerView" />
       <module fileurl="file://$PROJECT_DIR$/TBannerView.iml" filepath="$PROJECT_DIR$/TBannerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/TBannerView-app.iml" filepath="$PROJECT_DIR$/app/TBannerView-app.iml" group="TBannerView/app" />
+      <module fileurl="file://$PROJECT_DIR$/tbannerview/TBannerView-tbannerview.iml" filepath="$PROJECT_DIR$/tbannerview/TBannerView-tbannerview.iml" group="TBannerView/tbannerview" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/tbannerview/tbannerview.iml" filepath="$PROJECT_DIR$/tbannerview/tbannerview.iml" />
     </modules>

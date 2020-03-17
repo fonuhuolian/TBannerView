@@ -16,7 +16,7 @@ allprojects {
 ```
 `module build.gradle `
 ```
-implementation 'com.github.fonuhuolian:TBannerView:1.0.1'
+implementation 'com.github.fonuhuolian:TBannerView:1.0.2'
 ```
 
 > 混淆
