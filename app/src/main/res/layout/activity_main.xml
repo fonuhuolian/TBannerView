@@ -28,11 +28,20 @@
         android:layout_height="168dp"
         android:layout_marginTop="10dp"
         app:autoPlayDuration="4000"
+        app:imageViewPaddingLeft="50dp"
+        app:imageViewPaddingRight="20dp"
         app:indicatorMargin="5dp"
         app:indicatorSpace="2dp"
         app:indicator_position="centerBottom"
         app:indicator_shape="imageView"
         app:scrollDuration="600" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:onClick="click"
+        android:text="刷新" />
 
 
 </FrameLayout>

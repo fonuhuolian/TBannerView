@@ -283,6 +283,10 @@ public class TBannerView extends RelativeLayout {
 
     //添加任意View视图
     public void setViews(final List<View> views) {
+
+        // 先清空所有控件
+        removeAllViews();
+
         //初始化pager
         pager = new ViewPager(getContext());
         //添加viewpager到SliderLayout
