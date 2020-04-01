@@ -237,25 +237,70 @@ public class TBannerView extends RelativeLayout {
         if (itemCount < 1) {//当item个数0
             throw new IllegalStateException("item count not equal zero");
         } else if (itemCount < 2) { //当item个数为1
-            views.add(getImageView(urls.get(0), 0));
-            views.add(getImageView(urls.get(0), 0));
-            views.add(getImageView(urls.get(0), 0));
+            views.add(getViews(urls.get(0), 0));
+            views.add(getViews(urls.get(0), 0));
+            views.add(getViews(urls.get(0), 0));
         } else if (itemCount < 3) {//当item个数为2
-            views.add(getImageView(urls.get(0), 0));
-            views.add(getImageView(urls.get(1), 1));
-            views.add(getImageView(urls.get(0), 0));
-            views.add(getImageView(urls.get(1), 1));
+            views.add(getViews(urls.get(0), 0));
+            views.add(getViews(urls.get(1), 1));
+            views.add(getViews(urls.get(0), 0));
+            views.add(getViews(urls.get(1), 1));
         } else {
             for (int i = 0; i < urls.size(); i++) {
-                views.add(getImageView(urls.get(i), i));
+                views.add(getViews(urls.get(i), i));
+            }
+        }
+        setViews(views);
+    }
+
+    //添加网络图片路径
+    public void setCustomViews(List<View> v) {
+
+        List<View> views = new ArrayList<>();
+        itemCount = v.size();
+        //主要是解决当item为小于3个的时候滑动有问题，这里将其拼凑成3个以上
+        if (itemCount < 1) {//当item个数0
+            throw new IllegalStateException("item count not equal zero");
+        } else if (itemCount < 2) { //当item个数为1
+            views.add(getViews(v.get(0), 0));
+            views.add(getViews(v.get(0), 0));
+            views.add(getViews(v.get(0), 0));
+        } else if (itemCount < 3) {//当item个数为2
+            views.add(getViews(v.get(0), 0));
+            views.add(getViews(v.get(1), 1));
+            views.add(getViews(v.get(0), 0));
+            views.add(getViews(v.get(1), 1));
+        } else {
+            for (int i = 0; i < v.size(); i++) {
+                views.add(getViews(v.get(i), i));
             }
         }
         setViews(views);
     }
 
     @NonNull
-    private ImageView getImageView(String url, final int position) {
-        ImageView imageView = new ImageView(getContext());
+    private View getViews(final View view, final int position) {
+
+        if (imageViewPadding != 0) {
+            view.setPadding(imageViewPadding, imageViewPadding, imageViewPadding, imageViewPadding);
+        } else {
+            view.setPadding(imageViewPaddingLeft, imageViewPaddingTop, imageViewPaddingRight, imageViewPaddingBottom);
+        }
+
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onBannerItemClickListener != null) {
+                    onBannerItemClickListener.onItemClick(position, view);
+                }
+            }
+        });
+        return view;
+    }
+
+    @NonNull
+    private View getViews(String url, final int position) {
+        final ImageView imageView = new ImageView(getContext());
         if (imageViewPadding != 0) {
             imageView.setPadding(imageViewPadding, imageViewPadding, imageViewPadding, imageViewPadding);
         } else {
@@ -266,7 +311,7 @@ public class TBannerView extends RelativeLayout {
             @Override
             public void onClick(View v) {
                 if (onBannerItemClickListener != null) {
-                    onBannerItemClickListener.onItemClick(position);
+                    onBannerItemClickListener.onItemClick(position, imageView);
                 }
             }
         });
@@ -469,7 +514,7 @@ public class TBannerView extends RelativeLayout {
     }
 
     public interface OnBannerItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position, View view);
     }
 
     @Override
