@@ -250,6 +250,7 @@ public class TBannerView extends RelativeLayout {
     @NonNull
     private ImageView getImageView(String url, final int position) {
         ImageView imageView = new ImageView(getContext());
+        imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (imageViewPadding != 0) {
             imageView.setPadding(imageViewPadding, imageViewPadding, imageViewPadding, imageViewPadding);
         } else {
