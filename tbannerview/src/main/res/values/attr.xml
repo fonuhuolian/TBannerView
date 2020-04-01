@@ -24,6 +24,13 @@
             <enum name="leftTop" value="5" />
         </attr>
 
+        <attr name="bannerGravity" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="center" value="1" />
+        </attr>
+
+        <attr name="bannerInScreenPercent" format="fraction" />
+
         <attr name="indicatorSpace" format="dimension|reference" />
         <attr name="indicatorMargin" format="dimension|reference" />
         <attr name="autoPlayDuration" format="integer|reference" />

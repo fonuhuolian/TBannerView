@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -77,6 +78,8 @@ public class TBannerView extends RelativeLayout {
     private int currentPosition;
 
     private TBannerImageLoader TBannerImageLoader;
+    private int gravity;
+    private float fraction;
 
     private enum Shape {
         rect, oval, imageView
@@ -140,6 +143,9 @@ public class TBannerView extends RelativeLayout {
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.TBannerView, defStyle, 0);
         selectedIndicatorColor = array.getColor(R.styleable.TBannerView_selectedIndicatorColor, selectedIndicatorColor);
         unSelectedIndicatorColor = array.getColor(R.styleable.TBannerView_unSelectedIndicatorColor, unSelectedIndicatorColor);
+
+        gravity = array.getInt(R.styleable.TBannerView_bannerGravity, 0);
+        fraction = array.getFraction(R.styleable.TBannerView_bannerInScreenPercent, 1, 1, 1);
 
         int shape = array.getInt(R.styleable.TBannerView_indicator_shape, Shape.oval.ordinal());
         for (Shape shape1 : Shape.values()) {
@@ -250,7 +256,6 @@ public class TBannerView extends RelativeLayout {
     @NonNull
     private ImageView getImageView(String url, final int position) {
         ImageView imageView = new ImageView(getContext());
-        imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (imageViewPadding != 0) {
             imageView.setPadding(imageViewPadding, imageViewPadding, imageViewPadding, imageViewPadding);
         } else {
@@ -285,6 +290,8 @@ public class TBannerView extends RelativeLayout {
     //添加任意View视图
     public void setViews(final List<View> views) {
 
+        this.setClipChildren(false);
+
         // 先清空所有控件
         removeAllViews();
 
@@ -292,6 +299,19 @@ public class TBannerView extends RelativeLayout {
         pager = new ViewPager(getContext());
         //添加viewpager到SliderLayout
         addView(pager);
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        RelativeLayout.LayoutParams paramss = (LayoutParams) pager.getLayoutParams();
+        paramss.width = (int) (metrics.widthPixels * fraction); // 宽度设置成屏幕宽度的86%，这里根据自己喜好设置
+        // 高度不变
+        paramss.addRule(gravity == 0 ? RelativeLayout.ALIGN_LEFT : RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        pager.setLayoutParams(paramss);
+        pager.setClipChildren(false);
+        this.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return pager.dispatchTouchEvent(motionEvent);
+            }
+        });
         setSliderTransformDuration(scrollDuration);
         //初始化indicatorContainer
         indicatorContainer = new LinearLayout(getContext());
