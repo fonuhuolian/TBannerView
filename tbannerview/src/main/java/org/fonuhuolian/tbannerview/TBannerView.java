@@ -259,9 +259,38 @@ public class TBannerView extends RelativeLayout {
         setViews(views);
     }
 
-    //添加网络图片路径
+    //添加自定义布局
     public void setCustomViews(List<Integer> v, List data) {
 
+        List<View> views = new ArrayList<>();
+        itemCount = v.size();
+        //主要是解决当item为小于3个的时候滑动有问题，这里将其拼凑成3个以上
+        if (itemCount < 1) {//当item个数0
+            throw new IllegalStateException("item count not equal zero");
+        } else if (itemCount < 2) { //当item个数为1
+            views.add(getViews(v.get(0), 0, data));
+            views.add(getViews(v.get(0), 0, data));
+            views.add(getViews(v.get(0), 0, data));
+        } else if (itemCount < 3) {//当item个数为2
+            views.add(getViews(v.get(0), 0, data));
+            views.add(getViews(v.get(1), 1, data));
+            views.add(getViews(v.get(0), 0, data));
+            views.add(getViews(v.get(1), 1, data));
+        } else {
+            for (int i = 0; i < v.size(); i++) {
+                views.add(getViews(v.get(i), i, data));
+            }
+        }
+        setViews(views);
+    }
+
+    //添加自定义布局
+    public void setCustomViews(int res, List data) {
+
+        List<Integer> v = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            v.add(res);
+        }
         List<View> views = new ArrayList<>();
         itemCount = v.size();
         //主要是解决当item为小于3个的时候滑动有问题，这里将其拼凑成3个以上
