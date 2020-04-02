@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,8 +79,12 @@ public class TBannerView extends RelativeLayout {
     private int currentPosition;
 
     private TBannerImageLoader TBannerImageLoader;
+    private TBannerViewsLoader tBannerViewsLoader;
     private int gravity;
     private float fraction;
+
+
+    private Context context;
 
     private enum Shape {
         rect, oval, imageView
@@ -135,6 +140,7 @@ public class TBannerView extends RelativeLayout {
 
     public TBannerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
         init(attrs, defStyleAttr);
     }
 
@@ -254,7 +260,7 @@ public class TBannerView extends RelativeLayout {
     }
 
     //添加网络图片路径
-    public void setCustomViews(List<View> v) {
+    public void setCustomViews(List<Integer> v) {
 
         List<View> views = new ArrayList<>();
         itemCount = v.size();
@@ -279,23 +285,26 @@ public class TBannerView extends RelativeLayout {
     }
 
     @NonNull
-    private View getViews(final View view, final int position) {
+    private View getViews(final Integer id, final int position) {
+
+        final View inflate = LayoutInflater.from(context).inflate(id, null);
 
         if (imageViewPadding != 0) {
-            view.setPadding(imageViewPadding, imageViewPadding, imageViewPadding, imageViewPadding);
+            inflate.setPadding(imageViewPadding, imageViewPadding, imageViewPadding, imageViewPadding);
         } else {
-            view.setPadding(imageViewPaddingLeft, imageViewPaddingTop, imageViewPaddingRight, imageViewPaddingBottom);
+            inflate.setPadding(imageViewPaddingLeft, imageViewPaddingTop, imageViewPaddingRight, imageViewPaddingBottom);
         }
 
-        view.setOnClickListener(new OnClickListener() {
+        inflate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onBannerItemClickListener != null) {
-                    onBannerItemClickListener.onItemClick(position, view);
+                    onBannerItemClickListener.onItemClick(position, inflate);
                 }
             }
         });
-        return view;
+        tBannerViewsLoader.displayView(getContext(), position, inflate);
+        return inflate;
     }
 
     @NonNull
@@ -325,6 +334,11 @@ public class TBannerView extends RelativeLayout {
         this.TBannerImageLoader = TBannerImageLoader;
     }
 
+
+    public void setTBannerViewsLoader(TBannerViewsLoader tBannerViewsLoader) {
+        this.tBannerViewsLoader = tBannerViewsLoader;
+    }
+
     public ViewPager getPager() {
         if (pager != null) {
             return pager;
@@ -333,7 +347,7 @@ public class TBannerView extends RelativeLayout {
     }
 
     //添加任意View视图
-    public void setViews(final List<View> views) {
+    private void setViews(final List<View> views) {
 
         this.setClipChildren(false);
 
