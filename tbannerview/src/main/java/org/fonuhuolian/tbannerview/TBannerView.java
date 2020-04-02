@@ -260,7 +260,7 @@ public class TBannerView extends RelativeLayout {
     }
 
     //添加网络图片路径
-    public void setCustomViews(List<Integer> v) {
+    public void setCustomViews(List<Integer> v, List data) {
 
         List<View> views = new ArrayList<>();
         itemCount = v.size();
@@ -268,24 +268,24 @@ public class TBannerView extends RelativeLayout {
         if (itemCount < 1) {//当item个数0
             throw new IllegalStateException("item count not equal zero");
         } else if (itemCount < 2) { //当item个数为1
-            views.add(getViews(v.get(0), 0));
-            views.add(getViews(v.get(0), 0));
-            views.add(getViews(v.get(0), 0));
+            views.add(getViews(v.get(0), 0, data));
+            views.add(getViews(v.get(0), 0, data));
+            views.add(getViews(v.get(0), 0, data));
         } else if (itemCount < 3) {//当item个数为2
-            views.add(getViews(v.get(0), 0));
-            views.add(getViews(v.get(1), 1));
-            views.add(getViews(v.get(0), 0));
-            views.add(getViews(v.get(1), 1));
+            views.add(getViews(v.get(0), 0, data));
+            views.add(getViews(v.get(1), 1, data));
+            views.add(getViews(v.get(0), 0, data));
+            views.add(getViews(v.get(1), 1, data));
         } else {
             for (int i = 0; i < v.size(); i++) {
-                views.add(getViews(v.get(i), i));
+                views.add(getViews(v.get(i), i, data));
             }
         }
         setViews(views);
     }
 
     @NonNull
-    private View getViews(final Integer id, final int position) {
+    private View getViews(final Integer id, final int position, List data) {
 
         final View inflate = LayoutInflater.from(context).inflate(id, null);
 
@@ -303,7 +303,7 @@ public class TBannerView extends RelativeLayout {
                 }
             }
         });
-        tBannerViewsLoader.displayView(getContext(), position, inflate);
+        tBannerViewsLoader.displayView(getContext(), position, inflate, data.get(position));
         return inflate;
     }
 
